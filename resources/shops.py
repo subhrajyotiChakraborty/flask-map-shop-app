@@ -11,8 +11,8 @@ shop_list_schema = ShopSchema(many=True)
 class Shop(Resource):
     @classmethod
     def post(cls):
-        shops_json = request.get_json()
-        shop = shop_schema.load(shops_json)
+        shop_json = request.get_json()
+        shop = shop_schema.load(shop_json)
 
         try:
             shop.save_to_db()

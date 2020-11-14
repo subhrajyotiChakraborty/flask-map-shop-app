@@ -12,6 +12,8 @@ class ShopModel(db.Model):
     lat = db.Column(db.Float, nullable=False)
     long = db.Column(db.Float, nullable=False)
 
+    orders = db.relationship("OrderModel", lazy="dynamic")
+
     @classmethod
     def find_by_id(cls, _id: int) -> "ShopModel":
         return cls.query().find_by(id=_id).first()

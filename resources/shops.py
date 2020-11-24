@@ -24,4 +24,4 @@ class Shop(Resource):
 class ShopList(Resource):
     @classmethod
     def get(cls):
-        return {"Shops": shop_list_schema.dump(ShopModel.find_all())}, 200
+        return {"shops": shop_list_schema.dump(ShopModel.find_all())}, 200

@@ -14,14 +14,8 @@ app = Flask(__name__)
 CORS(app)
 
 # load_dotenv(".env", verbose=True)
-# app.config.from_object("default_config")
+app.config.from_object("default_config")
 # app.config.from_envvar("APPLICATION_SETTINGS")
-
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-    "DATABASE_URL", "sqlite:///data.db")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["PROPAGATE_EXCEPTIONS"] = True
-app.secret_key = os.environ.get("SECRET_KEY")
 
 api = Api(app)
 

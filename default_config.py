@@ -1,7 +1,8 @@
 import os
 
 DEBUG = True
-SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+SQLALCHEMY_DATABASE_URI = os.environ.get(
+    "DATABASE_URL", "sqlite:///data.db")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 PROPAGATE_EXCEPTIONS = True
-SECRET_KET = os.environ["APP_SECRET_KEY"]
+SECRET_KET = os.environ.get("SECRET_KEY")

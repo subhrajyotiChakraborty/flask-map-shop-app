@@ -2,7 +2,7 @@ import os
 from flask import Flask, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from flask_cors import CORS
 
 from db import db
@@ -13,9 +13,9 @@ from resources.orders import Order, OrderList
 app = Flask(__name__)
 CORS(app)
 
-# load_dotenv(".env", verbose=True)
+load_dotenv(".env", verbose=True)
 app.config.from_object("default_config")
-# app.config.from_envvar("APPLICATION_SETTINGS")
+app.config.from_envvar("APPLICATION_SETTINGS")
 
 api = Api(app)
 

@@ -19,9 +19,9 @@ app.config.from_envvar("APPLICATION_SETTINGS")
 api = Api(app)
 
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+# @app.before_first_request
+# def create_tables():
+#     db.create_all()
 
 
 @app.errorhandler(ValidationError)

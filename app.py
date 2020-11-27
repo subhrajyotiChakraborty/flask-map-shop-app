@@ -1,4 +1,3 @@
-import os
 from flask import Flask, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
@@ -13,16 +12,16 @@ from resources.orders import Order, OrderList
 app = Flask(__name__)
 CORS(app)
 
-load_dotenv(".env", verbose=True)
-app.config.from_object("default_config")
+# For dev purpose
+# load_dotenv(".env", verbose=True)
+# app.config.from_object("default_config")
+# app.config.from_envvar("APPLICATION_SETTINGS")
+
+# For production purpose
+app.config.from_object("config")
 app.config.from_envvar("APPLICATION_SETTINGS")
 
 api = Api(app)
-
-
-# @app.before_first_request
-# def create_tables():
-#     db.create_all()
 
 
 @app.errorhandler(ValidationError)

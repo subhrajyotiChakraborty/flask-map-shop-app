@@ -15,10 +15,6 @@ class ShopModel(db.Model):
     orders = db.relationship("OrderModel", lazy="dynamic")
 
     @classmethod
-    def find_by_id(cls, _id: int) -> "ShopModel":
-        return cls.query().find_by(id=_id).first()
-
-    @classmethod
     def find_all(cls) -> List["ShopModel"]:
         return cls.query.all()
 

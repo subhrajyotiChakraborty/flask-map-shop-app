@@ -21,6 +21,27 @@ class Shop(Resource):
             return {"message": "Error occurred while creating the shop"}, 500
 
 
+class EditShop(Resource):
+    @classmethod
+    def put(cls, shopId: int):
+        shop_json = request.get_json()
+        shop = ShopModel.find_by_id(shopId)
+
+        if ShopModel.find_by_id(shopId):
+            shop.store_name = shop_json["store_name"]
+            shop.store_image = shop_json["store_image"]
+            shop.lat = shop_json["lat"]
+            shop.long = shop_json["long"]
+            try:
+                shop.save_to_db()
+            except:
+                return {"message": "Error occurred while updating Store information"}, 500
+
+            return shop_schema.dump(shop), 200
+
+        return {"message": f"Shop with id {shopId} is not found"}
+
+
 class DeleteShop(Resource):
     @classmethod
     def delete(cls, shopId: int):

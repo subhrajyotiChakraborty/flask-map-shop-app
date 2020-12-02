@@ -19,6 +19,9 @@ class OrderModel(db.Model):
     def find_all(cls) -> List["OrderModel"]:
         return cls.query.all()
 
+    @classmethod
+    def find_by_id(cls, _id: int) -> "OrderModel":
+        return cls.query.filter_by(id=_id).first()
 
     def save_to_db(self) -> None:
         db.session.add(self)

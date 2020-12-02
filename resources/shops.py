@@ -21,6 +21,21 @@ class Shop(Resource):
             return {"message": "Error occurred while creating the shop"}, 500
 
 
+class DeleteShop(Resource):
+    @classmethod
+    def delete(cls, shopId: int):
+        shop = ShopModel.find_by_id(shopId)
+
+        if shop:
+            try:
+                shop.delete_from_db()
+                return {"message": "Shop deleted successfully"}, 200
+            except:
+                return {"message": "Error occurred while deleting the shop"}, 500
+
+        return {"message": f"Shop with id {shopId} is not found"}, 404
+
+
 class ShopList(Resource):
     @classmethod
     def get(cls):

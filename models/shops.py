@@ -12,11 +12,15 @@ class ShopModel(db.Model):
     lat = db.Column(db.Float, nullable=False)
     long = db.Column(db.Float, nullable=False)
 
-    orders = db.relationship("OrderModel", lazy="dynamic")
+    orders = db.relationship("OrderModel", lazy="dynamic", cascade="all, delete-orphan")
 
     @classmethod
     def find_all(cls) -> List["ShopModel"]:
         return cls.query.all()
+
+    @classmethod
+    def find_by_id(cls, _id: int) -> "ShopModel":
+        return cls.query.filter_by(id=_id).first()
 
     def save_to_db(self) -> None:
         db.session.add(self)
